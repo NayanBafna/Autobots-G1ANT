@@ -9,7 +9,7 @@ using G1ANT.Language;
 
 namespace G1ANT.Addon.Telegram
 {
-    [Command(Name = "telegram.viewmessage", Tooltip = "This command is used for viewing all the messages sent to you on Whatsapp.")]
+    [Command(Name = "telegram.viewmessage", Tooltip = "This command is used for viewing all the messages sent to you on Telegram.")]
     public class TelegramViewmessagesCommand : Command
     {
         public TelegramViewmessagesCommand(AbstractScripter scripter) : base(scripter)
