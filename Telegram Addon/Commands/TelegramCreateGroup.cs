@@ -7,7 +7,7 @@ using G1ANT.Language;
 
 namespace G1ANT.Addon.Telegram
 {
-    [Command(Name = "telegram.creategroup", Tooltip = "This command is used to search on the telegram site.")]
+    [Command(Name = "telegram.creategroup", Tooltip = "This command is used to create group on the telegram site.")]
     public class TelegramCreateGroup : Command
     {
         public TelegramCreateGroup(AbstractScripter scripter) : base(scripter)
