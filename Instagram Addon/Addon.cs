@@ -12,7 +12,7 @@ namespace G1ANT.Addon.Instagram
     [Addon(Name = "Instagram", Tooltip = "Automates the Instagram site")]
     [Copyright(Author = "", Copyright = "", Email = "support@g1ant.com", Website = "www.g1ant.com")]
     [License(Type = "LGPL", ResourceName = "License.txt")]
-    [CommandGroup(Name = "linkedin", Tooltip = "")]
+    [CommandGroup(Name = "instagram", Tooltip = "")]
     public class InstagramAddon : Language.Addon
     {
 
