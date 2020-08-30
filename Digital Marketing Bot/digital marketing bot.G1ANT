@@ -1,0 +1,264 @@
+addon facebook version 1.0.0.0
+addon instagram version 1.0.0.0
+addon instagramapp version 1.0.0.0
+addon linkedin version 1.0.0.0
+addon msoffice version 4.104.0.0
+addon twitter version 1.0.0.0
+addon core version 4.107.0.0
+addon language version 4.106.1.0
+
+excel.open path ♥environment⟦USERPROFILE⟧\Desktop\Test.xlsx
+delay 5
+
+excel.getvalue row 1 colname B result ♥platform1 
+excel.getvalue row 2 colname B result ♥email1
+excel.getvalue row 3 colname B result ♥pword1
+excel.getvalue row 6 colname B result ♥msg1
+excel.getvalue row 7 colname B result ♥post1
+excel.getvalue row 8 colname B result ♥yes1
+
+excel.getvalue row 10 colname B result ♥platform2 
+excel.getvalue row 11 colname B result ♥email2
+excel.getvalue row 12 colname B result ♥pword2
+excel.getvalue row 15 colname B result ♥msg2
+excel.getvalue row 16 colname B result ♥post2
+excel.getvalue row 17 colname B result ♥yes2
+
+excel.getvalue row 19 colname B result ♥platform3 
+excel.getvalue row 20 colname B result ♥email3
+excel.getvalue row 21 colname B result ♥pword3
+excel.getvalue row 24 colname B result ♥msg3
+excel.getvalue row 25 colname B result ♥post3
+excel.getvalue row 26 colname B result ♥yes3
+
+excel.getvalue row 28 colname B result ♥platform4 
+excel.getvalue row 29 colname B result ♥email4
+excel.getvalue row 30 colname B result ♥pword4
+excel.getvalue row 33 colname B result ♥msg4
+excel.getvalue row 34 colname B result ♥post4
+excel.getvalue row 35 colname B result ♥yes4
+
+if ⊂♥platform1=="facebook" && ♥platform2=="instagram" && ♥platform3=="linkedin" && ♥platform4=="twitter"⊃
+call facebook
+call instagram2
+call linkedin3
+call twitter4
+end
+
+if ⊂♥platform1=="facebook" && ♥platform2=="instagram" && ♥platform3=="linkedin" && ♥platform4==""⊃
+call facebook
+call instagram2
+call linkedin3
+end
+
+if ⊂♥platform1=="facebook" && ♥platform2=="instagram" && ♥platform3=="twitter" && ♥platform4==""⊃
+call facebook
+call instagram2
+call twitter3
+end
+
+
+if ⊂♥platform1=="facebook" && ♥platform2=="linkedin" && ♥platform3=="twitter" && ♥platform4==""⊃
+call facebook
+call linkedin2
+call twitter3
+end
+
+if ⊂♥platform1=="instagram" && ♥platform2=="linkedin" && ♥platform3=="twitter" && ♥platform4==""⊃
+call instagram1
+call linkedin2
+call twitter3
+end
+
+if ⊂♥platform1=="facebook" && ♥platform2=="instagram" && ♥platform3=="" && ♥platform4==""⊃
+call facebook
+call instagram2
+end
+
+if ⊂♥platform1=="facebook" && ♥platform2=="linkedin" && ♥platform3=="" && ♥platform4==""⊃
+call facebook
+call linkedin2
+end
+
+if ⊂♥platform1=="facebook" && ♥platform2=="twitter" && ♥platform3=="" && ♥platform4==""⊃
+call facebook
+call twitter2
+end
+
+if ⊂♥platform1=="instagram" && ♥platform2=="linkedin" && ♥platform3=="" && ♥platform4==""⊃
+call instagram1
+call linkedin2
+end
+
+if ⊂♥platform1=="instagram" && ♥platform2=="twitter" && ♥platform3=="" && ♥platform4==""⊃
+call instagram1
+call twitter2
+end
+
+if ⊂♥platform1=="linkedin" && ♥platform2=="twitter" && ♥platform3=="" && ♥platform4==""⊃
+call linkedin1
+call twitter2
+end
+
+if ⊂♥platform1=="facebook" && ♥platform2=="" && ♥platform3=="" && ♥platform4==""⊃
+call facebook
+end
+
+if ⊂♥platform1=="instagram" && ♥platform2=="" && ♥platform3=="" && ♥platform4==""⊃
+call instagram1
+end
+
+if ⊂♥platform1=="linkedin" && ♥platform2=="" && ♥platform3=="" && ♥platform4==""⊃
+call linkedin1
+end
+
+if ⊂♥platform1=="twitter" && ♥platform2=="" && ♥platform3=="" && ♥platform4==""⊃
+call twitter1
+end
+
+procedure facebook
+facebook.login email ♥email1 pword ♥pword1 search hi
+for counter ♥colin from 2 to 11
+excel.getvalue row 4 colindex ♥colin result ♥req100
+facebook.sentfriendrequest id ♥req100 search hi
+end
+for counter ♥colin2 from 2 to 11
+excel.getvalue row 5 colindex ♥colin2 result ♥msgto100
+facebook.sendmessage id ♥msgto100 message ♥msg1 search hi
+end
+facebook.createpost post ♥post1 search hi
+facebook.acceptfriendrequest number ♥yes1 search hi
+end 
+
+procedure twitter1
+twitter.login email ♥email1 pword ♥pword1 search hi 
+for counter ♥colindex1 from 2 to 11
+excel.getvalue row 4 colindex ♥colindex1 result ♥requests1
+twitter.follow username ♥requests1 search hi
+end
+for counter ♥colindex2 from 2 to 11
+excel.getvalue row 5 colindex ♥colindex2 result ♥msgto1
+twitter.sendmessage name ♥msgto1 message ♥msg1 search hi
+end
+twitter.post post ♥post1 search hi
+end
+
+procedure twitter2
+twitter.login email ♥email2 pword ♥pword2 search hi 
+for counter ♥colindex1 from 2 to 11
+excel.getvalue row 13 colindex ♥colindex1 result ♥requests2
+twitter.follow username ♥requests2 search hi
+end
+for counter ♥colindex2 from 2 to 11
+excel.getvalue row 14 colindex ♥colindex2 result ♥msgto2
+twitter.sendmessage name ♥msgto2 message ♥msg2 search hi
+end
+twitter.post post ♥post2 search hi
+end
+
+procedure twitter3
+twitter.login email ♥email3 pword ♥pword3 search hi 
+for counter ♥colindex1 from 2 to 11
+excel.getvalue row 22 colindex ♥colindex1 result ♥requests3
+twitter.follow username ♥requests3 search hi
+end
+for counter ♥colindex2 from 2 to 11
+excel.getvalue row 23 colindex ♥colindex2 result ♥msgto3
+twitter.sendmessage name ♥msgto3 message ♥msg3 search hi
+end
+twitter.post post ♥post3 search hi
+end
+
+procedure twitter4
+twitter.login email ♥email4 pword ♥pword4 search hi 
+for counter ♥colindex1 from 2 to 11
+excel.getvalue row 31 colindex ♥colindex1 result ♥requests4
+twitter.follow username ♥requests4 search hi
+end
+for counter ♥colindex2 from 2 to 11
+excel.getvalue row 32 colindex ♥colindex2 result ♥msgto4
+twitter.sendmessage name ♥msgto4 message ♥msg4 search hi
+end
+twitter.post post ♥post4 search hi
+end
+
+procedure linkedin1
+linkedin.login email ♥email1 pword ♥pword1 search hi
+for counter ♥col from 2 to 11
+excel.getvalue row 4 colindex ♥col result ♥req1
+linkedin.makeconnection nameid ♥req1 search hi
+end
+for counter ♥col2 from 2 to 11
+excel.getvalue row 5 colindex ♥col2 result ♥msgto5
+linkedin.sendmessage name ♥msgto5 message ♥msg1 search hi
+end
+linkedin.post post ♥post1 search hi
+linkedin.acceptrequests number ♥yes1 search hi
+end
+
+procedure linkedin2
+linkedin.login email ♥email2 pword ♥pword2 search hi
+for counter ♥col from 2 to 11
+excel.getvalue row 13 colindex ♥col result ♥req2
+linkedin.makeconnection nameid ♥req2 search hi
+end
+for counter ♥col2 from 2 to 11
+excel.getvalue row 14 colindex ♥col2 result ♥msgto6
+linkedin.sendmessage name ♥msgto6 message ♥msg2 search hi
+end
+linkedin.post post ♥post2 search hi
+linkedin.acceptrequests number ♥yes2 search hi
+end
+
+procedure linkedin3
+linkedin.login email ♥email3 pword ♥pword3 search hi
+for counter ♥col from 2 to 11
+excel.getvalue row 22 colindex ♥col result ♥req3
+linkedin.makeconnection nameid ♥req3 search hi
+end
+for counter ♥col2 from 2 to 11
+excel.getvalue row 23 colindex ♥col2 result ♥msgto7
+linkedin.sendmessage name ♥msgto7 message ♥msg3 search hi
+end
+linkedin.post post ♥post3 search hi
+linkedin.acceptrequests number ♥yes3 search hi
+end
+
+procedure instagram1
+instagram.login username ♥email1 pword ♥pword1 search hi
+for counter ♥col4 from 2 to 11
+excel.getvalue row 4 colindex ♥col4 result ♥requ1
+instagram.follow username ♥requ1 accounttype private search hi errorjump second
+label second
+instagram.follow username ♥requ1 accounttype public search hi
+end
+for counter ♥col5 from 2 to 11
+excel.getvalue row 5 colindex ♥col5 result ♥msgto8
+instagram.sendmessage username ♥msgto8 message ♥msg1 search hi
+end
+instagram.acceptrequests number ♥yes1 search hi
+delay 10
+instagramapp.open email ♥email1 pword ♥pword1
+instagramapp.makepost imagenumber ♥post1 
+end
+
+procedure instagram2
+instagram.login username ♥email2 pword ♥pword2 search hi
+for counter ♥col4 from 2 to 11
+excel.getvalue row 13 colindex ♥col4 result ♥requ2
+instagram.follow username ♥requ2 accounttype private search hi errorjump third
+label third
+instagram.follow username ♥requ2 accounttype public search hi
+end
+for counter ♥col5 from 2 to 11
+excel.getvalue row 14 colindex ♥col5 result ♥msgto9
+instagram.sendmessage username ♥msgto9 message ♥msg2 search hi
+end
+instagram.acceptrequests number ♥yes2 search hi
+delay 10
+instagramapp.open email ♥email2 pword ♥pword2
+instagramapp.makepost imagenumber ♥post2 
+end
+
+
+
