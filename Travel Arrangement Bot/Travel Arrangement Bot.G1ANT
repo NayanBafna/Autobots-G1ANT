@@ -1,0 +1,107 @@
+addon tripadvisor version 1.0.0.0
+addon msoffice version 4.104.0.0
+addon yatra version 1.0.0.0
+addon core version 4.107.0.0
+addon language version 4.106.1.0
+
+excel.open path  ♥environment⟦USERPROFILE⟧\Desktop\document.xlsx
+delay 5
+excel.getvalue row 2 colname B result ♥travel
+excel.getvalue row 3 colname B result ♥yatralogin
+excel.getvalue row 4 colname B result ♥yatrapword
+excel.getvalue row 3 colname C result ♥triplogin
+excel.getvalue row 4 colname C result ♥trippword
+excel.getvalue row 5 colname B result ♥departfrom
+excel.getvalue row 6 colname B result ♥destination
+excel.getvalue row 7 colname B result ♥date1
+excel.getvalue row 8 colname B result ♥date2
+excel.getvalue row 9 colname B result ♥seat
+excel.getvalue row 10 colname B result ♥id
+
+if ⊂♥travel=="Flight"⊃
+call Flight
+end
+
+if ⊂♥travel == "Hotel"⊃
+call Hotel
+end
+
+if ⊂♥travel == "Bus"⊃
+call Bus
+end
+
+if ⊂♥travel == "Train"⊃
+call Train
+end
+
+if ⊂♥travel == "Cabs"⊃
+call Cabs
+end
+delay 10
+
+
+procedure Flight 
+yatra.login email ♥yatralogin pword ♥yatrapword search hh timeout ‴40000‴
+delay 7
+yatra.searchflight type ‴2‴ departfrom ♥departfrom destination ♥destination departdate ♥date1 returndate ♥date2 seat ♥seat result ♥text1 search hh 
+delay 10
+tripadvisor.open timeout ‴30000‴ search hh
+tripadvisor.searchflight type ‴2‴ departfrom ♥departfrom destination ♥destination departdate ♥date1 returndate ♥date2 seat ♥seat result ♥text2 search hh 
+
+program notepad
+delay 3
+keyboard text ‴1.‴
+keyboard text ♥text1
+keyboard ⋘ENTER⋙
+keyboard text ‴2.‴
+keyboard ⋘ENTER⋙
+keyboard text ♥text2
+end
+
+procedure Hotel
+yatra.login email ♥yatralogin pword ♥yatrapword search hh timeout ‴40000‴
+delay 7
+yatra.searchhotel hotel ♥destination checkindate ♥date1 checkoutdate ♥date2 adults ‴1‴ result ♥text1  search hh
+delay 10
+tripadvisor.open timeout ‴40000‴ search hh
+tripadvisor.searchhotel hotel ♥destination checkindate ♥date1 checkoutdate ♥date2 adults ‴1‴ result ♥text2 search hh
+
+program notepad
+delay 3
+keyboard text ‴1.‴
+keyboard text ♥text1
+keyboard ⋘ENTER⋙
+keyboard text ‴2.‴
+keyboard ⋘ENTER⋙
+keyboard text ♥text2
+end
+
+procedure Bus
+yatra.login email ♥yatralogin pword ♥yatrapword search hh timeout ‴40000‴
+delay 7
+yatra.searchbuses departfrom ♥departfrom destination ♥destination departdate ♥date1 result ♥text1 search hh
+program notepad
+delay 3
+keyboard text ‴1.‴
+keyboard text ♥text1
+end
+
+procedure Train
+yatra.login email ♥yatralogin pword ♥yatrapword timeout ‴40000‴ search hh
+delay 7
+yatra.searchtrains departfrom ♥departfrom destination ♥destination departdate ♥date1 irctcid ♥id result ♥text1 search hh
+program notepad
+delay 3
+keyboard text ‴1.‴
+keyboard text ♥text1
+end
+
+procedure Cabs
+yatra.login email ♥yatralogin pword ♥yatrapword timeout ‴40000‴ search hh
+delay 7
+yatra.searchcabs type ‴2‴ departfrom ♥departfrom destination ♥destination departdate ♥date1 returndate ♥date2 result ♥text1 search hh
+program notepad
+delay 3
+keyboard text ‴1.‴
+keyboard text ♥text1
+end
